@@ -26,5 +26,4 @@ I build things at the boundary of hardware and software — processor pipelines,
 [![Portfolio](https://img.shields.io/badge/Portfolio-hhlong7.github.io-00C471?style=flat)](https://hhlong7.github.io)
 [![Email](https://img.shields.io/badge/Email-hhlong605@gmail.com-EA4335?style=flat&logo=gmail)](mailto:hhlong605@gmail.com)
 
-
- 
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=hhlong7&layout=compact&theme=dark&hide_border=true&bg_color=0A0F1E&title_color=00C471&text_color=E8E4D9)
