@@ -5,13 +5,11 @@
 I build things at the boundary of hardware and software — processor pipelines, GPU cores, and AI agents.
 
 ---
-
 ## 🔧 What I'm working on
 
 - **[LFGPU](https://github.com/hhlong7/LFGPU)** — Migrating a RISC-V GPU from a custom ISA to standard RV32IM (~3000 lines of SV rearchitected), targeting Vortex compiler compatibility. Personal project forked from Cal Poly CARP's GAR GPU.
 
 ---
-
 ## 🗂 Projects
 
 | Project | Description | Stack |
@@ -22,20 +20,11 @@ I build things at the boundary of hardware and software — processor pipelines,
 | [Limited-Memory-Inductive-Reasoning-Agent](https://github.com/hhlong7/Limited-Memory-Inductive-Reasoning-Agent) | AI agent that learns FOL rules under memory constraints | Python, Z3 |
 
 ---
-
 ## 📫 Reach me
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-longhh605-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/longhh605/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-hhlong7.github.io-00C471?style=flat)](https://hhlong7.github.io)
 [![Email](https://img.shields.io/badge/Email-hhlong605@gmail.com-EA4335?style=flat&logo=gmail)](mailto:hhlong605@gmail.com)
 
----
 
-## 📊 GitHub Activity
- 
-![Long's GitHub Stats](https://github-readme-stats.vercel.app/api?username=hhlong7&show_icons=true&theme=dark&hide_border=true&bg_color=0A0F1E&title_color=00C471&icon_color=00C471&text_color=E8E4D9)
- 
-![GitHub Streak](https://streak-stats.demolab.com?user=hhlong7&theme=dark&hide_border=true&background=0A0F1E&ring=00C471&fire=00C471&currStreakLabel=00C471)
- 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=hhlong7&layout=compact&theme=dark&hide_border=true&bg_color=0A0F1E&title_color=00C471&text_color=E8E4D9)
  
