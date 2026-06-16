@@ -9,7 +9,6 @@ I build things at the boundary of hardware and software — processor pipelines,
 ## 🔧 What I'm working on
 
 - **[LFGPU](https://github.com/hhlong7/LFGPU)** — Migrating a RISC-V GPU from a custom ISA to standard RV32IM (~3000 lines of SV rearchitected), targeting Vortex compiler compatibility. Personal project forked from Cal Poly CARP's GAR GPU.
-- **[RV32IMACZ](https://github.com/hhlong7/RV32IMACZ)** — 7-stage in-order RISC-V CPU (RV32IMAC + Zicsr/Zifencei) with dual-issue front end, branch prediction, two-level cache hierarchy, atomics, and FreeRTOS/CoreMark bring-up. 23/23 regression tests passing.
 
 ---
 
