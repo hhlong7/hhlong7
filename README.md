@@ -1,6 +1,6 @@
 # Long Hoang Ho's GitHub 🧑🏻‍💻
 
-<table><tr><td valign="top" width="55%">
+<table><tr><td valign="center" width="55%">
 **Electrical Engineering @ Cal Poly SLO** · CS Minor · Class of 2028
  
 I build things at the boundary of hardware and software — processor pipelines, GPU cores, and AI agents.
