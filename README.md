@@ -6,8 +6,7 @@
 I build things at the boundary of hardware and software — processor pipelines, GPU cores, and AI agents.
  
 </td><td valign="top" width="45%">
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=hhlong7&layout=compact&theme=dark&hide_border=true&bg_color=0A0F1E&title_color=00C471&text_color=E8E4D9)
- 
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hhlong7&layout=compact&theme=dark&hide_border=true&bg_color=0A0F1E&title_color=00C471&text_color=E8E4D9" alt="Top Languages" />
 </td></tr></table>
 
 ---
