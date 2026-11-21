@@ -560,27 +560,6 @@ def card_graph(d):
 COLOR_ATTR = re.compile(r'(fill|stroke|stop-color)="(#[0-9a-fA-F]{6})"')
 
 
-def light_overrides(svg_dark, svg_light):
-    """CSS that recolours the dark SVG into the light one under prefers-color-scheme:light.
-
-    Both SVGs are built by the same code, so their colour attributes line up one to one.
-    """
-    a, b = COLOR_ATTR.findall(svg_dark), COLOR_ATTR.findall(svg_light)
-    assert len(a) == len(b), "dark and light renders differ in structure"
-    rules, seen = [], {}
-    for (attr, dk), (_, lt) in zip(a, b):
-        if dk.lower() == lt.lower():
-            continue
-        key = (attr, dk.lower())
-        if key in seen:
-            if seen[key] != lt.lower():
-                print(f"WARNING: {attr} {dk} maps to both {seen[key]} and {lt}", file=sys.stderr)
-            continue
-        seen[key] = lt.lower()
-        rules.append(f'[{attr}="{dk}" i]{{{attr}:{lt}}}')
-    return "@media (prefers-color-scheme:light){" + "".join(rules) + "}"
-
-
 def build_all(d):
     cards = [card_about(), card_contrib(d), card_languages(d), card_graph(d)]
     cards += [card_repo(i, r) for i, r in enumerate(REPOS)]
@@ -588,20 +567,27 @@ def build_all(d):
 
 
 def main():
+    """Write one SVG per card per theme: <name>-dark.svg and <name>-light.svg.
+
+    GitHub picks between them with #gh-dark-mode-only / #gh-light-mode-only in the
+    README, which follows GitHub's own theme setting (prefers-color-scheme inside an
+    <img> SVG follows the OS instead, which is why we don't rely on it).
+    """
     OUT.mkdir(exist_ok=True)
     d = load_data()
-    if THEME in ("dark", "light"):
-        use_palette(THEME)
-        svgs = {c.name: c.render() for c in build_all(d)}
-    else:
-        use_palette("dark")
-        dark = {c.name: c.render() for c in build_all(d)}
-        use_palette("light")
-        light = {c.name: c.render() for c in build_all(d)}
-        svgs = {n: dark[n].replace("</style>", light_overrides(dark[n], light[n]) + "</style>", 1) for n in dark}
-    for name, svg in svgs.items():
-        (OUT / f"{name}.svg").write_text(svg, encoding="utf-8")
-        print(f"{name}.svg  {len(svg) / 1024:.1f} KB")
+    themes = [THEME] if THEME in ("dark", "light") else ["dark", "light"]
+    written = set()
+    for theme in themes:
+        use_palette(theme)
+        for c in build_all(d):
+            svg = c.render()
+            fn = f"{c.name}-{theme}.svg"
+            (OUT / fn).write_text(svg, encoding="utf-8")
+            written.add(fn)
+            print(f"{fn}  {len(svg) / 1024:.1f} KB")
+    for old in OUT.glob("*.svg"):  # drop cards from older layouts
+        if old.name not in written and THEME not in ("dark", "light"):
+            old.unlink()
     if _missing:
         print("WARNING: glyphs missing from fonts:", sorted(_missing), file=sys.stderr)
     if STATIC:
@@ -610,11 +596,11 @@ def main():
 
 def write_preview():
     """Same markup as the README: one paragraph, rows made by widths, no whitespace between images."""
-    img = lambda n, w: f'<img src="{n}.svg" width="{w}">'
-    bg = {"dark": "#0d1117", "light": "#ffffff"}.get(THEME)
-    body_css = (f"body{{margin:0;background:{bg};display:flex;justify-content:center}}" if bg else
-                "body{margin:0;background:#fff;display:flex;justify-content:center}"
-                "@media (prefers-color-scheme:dark){body{background:#0d1117}}")
+    img = lambda n, w: (f'<img class="d" src="{n}-dark.svg" width="{w}">'
+                        f'<img class="l" src="{n}-light.svg" width="{w}">')
+    # preview picks the theme from the browser; on GitHub the README fragments do this
+    body_css = ("body{margin:0;background:#fff;display:flex;justify-content:center}.d{display:none}"
+                "@media (prefers-color-scheme:dark){body{background:#0d1117}.d{display:inline}.l{display:none}}")
     rows = [img("about", "100%"),
             img("contributions", "72.7%") + img("languages", "27.2%"),
             img("graph", "100%"),
